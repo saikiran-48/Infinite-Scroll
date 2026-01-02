@@ -9,7 +9,7 @@ type Photo = {
   };
 };
 
-const API_KEY = "YOUR_PEXELS_API_KEY"; // TEMP: hardcode for now
+const API_KEY = "8ye6qVNJ9IS65dCvmh07sVtmQ5kmL7Jw9mCal1xmoIbmR4MnuwLnbbnG";
 
 export default function App() {
   const [images, setImages] = useState<Photo[]>([]);
