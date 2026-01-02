@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient, type PhotosWithTotalResults } from "pexels";
 import { useInfiniteScroll } from "./useInfiniteScroll";
-import "./app.css";
+import "./App.css";
 
 const client = createClient(import.meta.env.VITE_PEXELS_API_KEY);
 
