@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
-import { createClient, type PhotosWithTotalResults } from "pexels";
 import { useInfiniteScroll } from "./useInfiniteScroll";
 import "./App.css";
-
-// const client = createClient(import.meta.env.VITE_PEXELS_API_KEY);
-const client = createClient("8ye6qVNJ9IS65dCvmh07sVtmQ5kmL7Jw9mCal1xmoIbmR4MnuwLnbbnG");
-
 
 type Photo = {
   id: number;
@@ -13,6 +8,8 @@ type Photo = {
     medium: string;
   };
 };
+
+const API_KEY = "YOUR_PEXELS_API_KEY"; // TEMP: hardcode for now
 
 export default function App() {
   const [images, setImages] = useState<Photo[]>([]);
@@ -25,17 +22,23 @@ export default function App() {
 
       setLoading(true);
 
-      const res = (await client.photos.curated({
-        page,
-        per_page: 6,
-      })) as PhotosWithTotalResults;
+      const res = await fetch(
+        `https://api.pexels.com/v1/curated?page=${page}&per_page=6`,
+        {
+          headers: {
+            Authorization: API_KEY,
+          },
+        }
+      );
 
-      setImages((prev) => [...prev, ...res.photos]);
+      const data = await res.json();
+
+      setImages((prev) => [...prev, ...data.photos]);
       setLoading(false);
     };
 
     fetchImages();
-  },  [page]);
+  }, [page]);
 
   const loaderRef = useInfiniteScroll(
     () => setPage((prev) => prev + 1),
