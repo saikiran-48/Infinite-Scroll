@@ -3,7 +3,9 @@ import { createClient, type PhotosWithTotalResults } from "pexels";
 import { useInfiniteScroll } from "./useInfiniteScroll";
 import "./App.css";
 
-const client = createClient(import.meta.env.VITE_PEXELS_API_KEY);
+// const client = createClient(import.meta.env.VITE_PEXELS_API_KEY);
+const client = createClient("8ye6qVNJ9IS65dCvmh07sVtmQ5kmL7Jw9mCal1xmoIbmR4MnuwLnbbnG");
+
 
 type Photo = {
   id: number;
